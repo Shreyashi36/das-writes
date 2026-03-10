@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>my blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf8f4;
+      --text: #2a2621;
+      --muted: #7a736a;
+      --accent: #b85c38;
+      --border: #ddd8ce;
+      --link: #3d5a80;
+      --sidebar-w: 220px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ─── Layout ─── */
+    .page {
+      display: flex;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      gap: 3rem;
+    }
+
+    /* ─── Sidebar ─── */
+    aside {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+    }
+
+    .site-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-section {
+      margin-bottom: 1.8rem;
+    }
+
+    .sidebar-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .sidebar-section ul {
+      list-style: none;
+    }
+
+    .sidebar-section ul li a {
+      font-size: 0.9rem;
+      color: var(--link);
+      text-decoration: none;
+      display: block;
+      padding: 0.15rem 0;
+      transition: color 0.15s;
+    }
+
+    .sidebar-section ul li a:hover {
+      color: var(--accent);
+    }
+
+    /* ─── Main ─── */
+    main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ─── Post Header ─── */
+    .post-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .post-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.8rem;
+      align-items: center;
+    }
+
+    .post-meta a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .post-meta a:hover { color: var(--accent); }
+
+    .tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.3rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: #ede9e2;
+      color: var(--muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+
+    .tag:hover { background: #ddd8ce; color: var(--text); }
+
+    /* ─── Post Body ─── */
+    .post-body p {
+      margin-bottom: 1.4rem;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 1.8rem 0;
+      padding: 0.2rem 1.2rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .post-body blockquote p {
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body h2, .post-body h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 2.5rem 0 1rem;
+    }
+
+    .post-body a {
+      color: var(--link);
+    }
+
+    .post-body a:hover { color: var(--accent); }
+
+    .post-body ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .post-body ol li {
+      margin-bottom: 0.3rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.2rem 0;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 680px) {
+      .page { flex-direction: column; gap: 2rem; }
+      aside { width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+      .post-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <a href="#" class="site-title">### your-blog.name</a>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Categories</div>
+      <ul>
+        <li><a href="#">Personal</a></li>
+        <li><a href="#">Technical</a></li>
+        <li><a href="#">Essays</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Inspired by</div>
+      <ul>
+        <li><a href="#">Someone Interesting</a></li>
+        <li><a href="#">Another Writer</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Other Writing</div>
+      <ul>
+        <li><a href="#">Medium</a></li>
+        <li><a href="#">Substack</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <article>
+
+      <header class="post-header">
+        <h1 class="post-title">Your First Post Title</h1>
+        <div class="post-meta">
+          <span>By: <a href="#">you</a></span>
+          <span>On: Tue 10 March 2026</span>
+          <span>In: <a href="#">Personal</a></span>
+        </div>
+        <div class="tags">
+          <a class="tag" href="#">#writing</a>
+          <a class="tag" href="#">#thoughts</a>
+        </div>
+      </header>
+
+      <div class="post-body">
+
+        <p>
+          Start your essay here. This is a place for long-form thinking — the kind that doesn't fit
+          into a tweet thread or a listicle. Write the way you think.
+        </p>
+
+        <p>
+          You can write about history, books, music, people you've met, ideas that won't leave you alone.
+          The goal is a record of your thinking over time, not content for an algorithm.
+        </p>
+
+        <blockquote>
+          <p>A good quote you found while reading something. Let it breathe on its own.</p>
+          <p>Another line if needed. Italics add weight.</p>
+        </blockquote>
+
+        <p>
+          After the quote, come back to your own voice. What does it mean to you?
+          Why did it stick? The reflection is more interesting than the quote itself.
+        </p>
+
+        <p>
+          Keep going. A post like this might be 800–1500 words. Long enough to actually say something,
+          short enough that you can write it in one sitting.
+        </p>
+
+        <hr>
+
+        <h3>Refs</h3>
+        <ol>
+          <li><a href="#">Book or article that influenced this post</a></li>
+          <li><a href="#">Another source worth reading</a></li>
+        </ol>
+
+        <h3>More Quotes</h3>
+        <blockquote>
+          <p>An extra quote that didn't fit in the body but was too good to cut.</p>
+          <p>Another one. Collect the good lines.</p>
+        </blockquote>
+
+      </div>
+    </article>
+  </main>
+
+</div>
+
+</body>
+</html>
